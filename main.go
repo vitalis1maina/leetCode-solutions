@@ -1,8 +1,6 @@
-/*Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+/*Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
 
-You may assume that each input would have exactly one solution, and you may not use the same element twice.
-
-You can return the answer in any order.*/
+You must write an algorithm with O(log n) runtime complexity.*/
 package main
 
 import "fmt"
@@ -10,19 +8,15 @@ import "fmt"
 func main() {
 
 	slice := []int{2, 4, 5, 7, 8, 13, 45, 67}
-	r := twoSum(slice, 6)
+	r := searchInsert(slice, 3)
 	fmt.Println(r)
 }
+func searchInsert(nums []int, target int) int {
+	i := 0
 
-func twoSum(nums []int, target int) []int {
-	m := make(map[int]int)
-	for idx, num := range nums {
-
-		if v, found := m[target-num]; found {
-			return []int{v, idx}
-		}
-
-		m[num] = idx
+	for i < len(nums) && nums[i] < target {
+		i++
 	}
-	return nil
+
+	return i
 }
